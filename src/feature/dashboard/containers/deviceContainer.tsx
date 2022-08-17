@@ -30,7 +30,7 @@ export const DeviceContainer = (device: DeviceInfo) => {
 
     let history = useHistory();
 
-    const goHome = (url: string) => {
+    const goStreamPage = (url: string) => {
         history.push({
             pathname: '/home/dashboard/device/stream',
             state: { streamUrl: url }
@@ -53,7 +53,7 @@ export const DeviceContainer = (device: DeviceInfo) => {
                 }
             });
             setIsLoading(false);
-            goHome(response.data.data.streamUrl);
+            goStreamPage(response.data.data.streamUrl);
         } catch (error) {
             setIsLoading(false);
         }

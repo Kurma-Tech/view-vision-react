@@ -14,6 +14,7 @@ import { toggleSidebar } from '../actions/actions';
 import { LayoutRootType } from '../types';
 import { fetchLogoutAsync } from '../../../../shared/auth/actions/actions';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useHistory } from "react-router-dom";
 
 interface NavProps {
     open: boolean;
@@ -28,6 +29,14 @@ function Navbar(props: NavProps) {
     const toggleDrawer = () => {
         toggleOpen();
     };
+    let history = useHistory();
+
+    const goLoginPage = () => {
+        history.push({
+            pathname: '/login',
+        });
+    };
+
     return (
         <AppBar
             position="fixed"
@@ -54,7 +63,7 @@ function Navbar(props: NavProps) {
                         [classes.hide]: open,
                     })}
                 >
-                    React App
+                    View Vision
                 </Typography>
                 <Typography
                     variant="h6"
@@ -66,12 +75,15 @@ function Navbar(props: NavProps) {
                     {' '}
                 </Typography>
                 <div>{name}</div>
-                <IconButton color="inherit">
+                {/* <IconButton color="inherit">
                     <Badge badgeContent={4} color="secondary">
                         <NotificationsIcon />
                     </Badge>
-                </IconButton>
-                <IconButton color="inherit" onClick={logout}>
+                </IconButton> */}
+                <IconButton color="inherit" onClick={() => {
+                    logout();
+                    goLoginPage();
+                }}>
                     <ExitToAppIcon />
                 </IconButton>
             </Toolbar>

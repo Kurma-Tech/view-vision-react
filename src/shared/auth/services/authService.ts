@@ -8,3 +8,7 @@ export function getToken() {
     const userToken = JSON.parse(tokenString as string);
     return userToken;
 }
+
+export function removeToken() {
+    localStorage.removeItem("token");
+}

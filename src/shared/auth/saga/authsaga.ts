@@ -1,7 +1,7 @@
 import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
 import * as actionTypes from '../actions/actions';
 import * as api from '../api/authapi';
-import { setToken, getToken } from '../services/authService';
+import { setToken, getToken, removeToken } from '../services/authService';
 
 
 function* loginRequest(action: ReturnType<typeof actionTypes.fetchLoginAsync.request>): Generator {
@@ -30,9 +30,11 @@ function* registerRequest(action: ReturnType<typeof actionTypes.fetchRegisterAsy
         const responseData = {
             ...response.data,
             isLoggedIn: true,
-            name: ""
+            name: "",
+            access_token: response.data.access
         }
         console.log(responseData);
+        setToken(response.data.access as string);
         if (response) yield put(actionTypes.fetchRegisterAsync.success(responseData));
     } catch (error) {
         console.log(error);
@@ -64,6 +66,7 @@ function* authenticateRequest(action: ReturnType<typeof actionTypes.fetchAuthAsy
 
 function* logoutRequest() {
     try {
+        removeToken();
         // yield call(api.logout);
         yield put(actionTypes.fetchLogoutAsync.success(true));
     } catch (e) {

@@ -43,7 +43,7 @@ function Sidebar(props: SidebarProps) {
                 <ListItemAvatar>
                     <Avatar alt="View Vision" src={logo} />
                 </ListItemAvatar>
-                <ListItemText primary="React App" />
+                <ListItemText primary="View Vision" />
                 <div className={classes.toolbar}>
                     <IconButton onClick={toggleDrawer}>
                         <ChevronLeftIcon />
