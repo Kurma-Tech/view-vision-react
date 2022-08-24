@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button, Card, CardContent, CardActions, colors, Box } from '@material-ui/core';
 import { DeviceInfo } from '../types';
@@ -30,30 +30,86 @@ export const DeviceContainer = (device: DeviceInfo) => {
 
     let history = useHistory();
 
-    const goStreamPage = (url: string) => {
+    const goStreamPage = (url1?: string, url2?: string, url3?: string, url4?: string) => {
         history.push({
             pathname: '/home/dashboard/device/stream',
-            state: { streamUrl: url }
+            state: { streamUrl1: url1, streamUrl2: url2, streamUrl3: url3, streamUrl4: url4, }
         });
     };
 
     async function handleViewStream() {
         try {
             setIsLoading(true);
-            const response = await axios.post('http://139.162.230.224/test', {
-                address: device.address.toString(),
-                port: device.port.toString(),
-                username: device.userName.toString(),
-                password: device.password.toString(),
-                channel: "102"
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Access-Control-Allow-Origin": "*"
-                }
-            });
+            var response1 = null;
+            var response2 = null;
+            var response3 = null;
+            var response4 = null;
+            try {
+                response1 = await axios.post('http://139.162.230.224/test', {
+                    address: device.address.toString(),
+                    port: device.port.toString(),
+                    username: device.userName.toString(),
+                    password: device.password.toString(),
+                    channel: "102"
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                });
+            } catch (error) {
+                console.log(error);
+            }
+            try {
+                response2 = await axios.post('http://139.162.230.224/test', {
+                    address: device.address.toString(),
+                    port: device.port.toString(),
+                    username: device.userName.toString(),
+                    password: device.password.toString(),
+                    channel: "202"
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                });
+            } catch (error) {
+                console.log(error);
+            }
+            try {
+                response3 = await axios.post('http://139.162.230.224/test', {
+                    address: device.address.toString(),
+                    port: device.port.toString(),
+                    username: device.userName.toString(),
+                    password: device.password.toString(),
+                    channel: "302"
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                });
+            } catch (error) {
+                console.log(error);
+            }
+            try {
+                response4 = await axios.post('http://139.162.230.224/test', {
+                    address: device.address.toString(),
+                    port: device.port.toString(),
+                    username: device.userName.toString(),
+                    password: device.password.toString(),
+                    channel: "402"
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                });
+            } catch (error) {
+                console.log(error);
+            }
             setIsLoading(false);
-            goStreamPage(response.data.data.streamUrl);
+            goStreamPage(response1?.data.data.streamUrl, response2?.data.data.streamUrl, response3?.data.data.streamUrl, response4?.data.data.streamUrl);
         } catch (error) {
             setIsLoading(false);
         }
