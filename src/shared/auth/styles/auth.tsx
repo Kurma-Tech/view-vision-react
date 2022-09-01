@@ -20,7 +20,8 @@ export const useStyles = makeStyles(theme => ({
         padding: theme.spacing(4),
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: 'left',
+        color: 'black',
     },
     avatar: {
         margin: theme.spacing(1),
@@ -28,9 +29,38 @@ export const useStyles = makeStyles(theme => ({
     },
     form: {
         width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(1, 0, 1),
+        color: 'black',
+    },
+    textfield: {
+        margin: theme.spacing(1, 0, 1),
+        backgroundColor: 'var(--text-filed-color)',
     },
     submit: {
-        margin: theme.spacing(3, 0, 2),
+        margin: theme.spacing(2, 0, 2),
+        backgroundColor: 'var(--button-submit-color)',
+        '&:hover': {
+            backgroundColor: 'var(--button-submit-color)',
+        },
+    },
+    multilineColor: {
+        color: 'var(--text-multiline-color)',
+    },
+    signRegisterColor: {
+        color: 'var(--sign-register-color)',
+    },
+    tabs: {
+        margin: theme.spacing(1, 0, 1),
+        padding: 0,
+        height: 42,
+        minHeight: 42,
+        backgroundColor: 'var(--text-filed-color)',
+        '& button': {
+            textDecoration: 'none',
+        },
+    },
+    tab: {
+        height: 42,
+        minHeight: 42,
     },
 }));

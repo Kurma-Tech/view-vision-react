@@ -27,8 +27,8 @@ interface LoginProps {
 
 function Login(props: LoginProps) {
     const classes = useStyles();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const onChangeEmail = (e: any) => {
         const email = e.target.value;
@@ -45,10 +45,7 @@ function Login(props: LoginProps) {
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
                     <div className={classes.paper}>
-                        <Avatar className={classes.avatar}>
-                            <LockOutlinedIcon />
-                        </Avatar>
-                        <Typography component="h5" variant="h5">
+                        <Typography component="h5" variant="h6">
                             Sign in
                         </Typography>
                         <form className={classes.form} noValidate>
@@ -58,12 +55,17 @@ function Login(props: LoginProps) {
                                 required
                                 fullWidth
                                 id="email"
-                                label="Email Address"
+                                label={email ? '' : 'Email address'}
                                 name="email"
                                 value={email}
                                 autoComplete="off"
                                 autoFocus
+                                InputLabelProps={{ shrink: false }}
                                 onChange={onChangeEmail}
+                                className={classes.textfield}
+                                InputProps={{
+                                    className: classes.multilineColor,
+                                }}
                             />
                             <TextField
                                 variant="outlined"
@@ -72,48 +74,47 @@ function Login(props: LoginProps) {
                                 fullWidth
                                 name="password"
                                 value={password}
-                                label="Password"
+                                label={password ? '' : 'Password'}
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
                                 color="primary"
                                 onChange={onChangePassword}
+                                className={classes.textfield}
+                                InputLabelProps={{ shrink: false }}
+                                InputProps={{
+                                    className: classes.multilineColor,
+                                }}
                             />
                             <Button
                                 type="button"
                                 fullWidth
                                 variant="contained"
+                                disableElevation={true}
                                 color="primary"
                                 className={classes.submit}
                                 onClick={() => {
-                                    props.login(
-                                        {
-                                            email: email,
-                                            password: password,
-                                        }
-                                    )
+                                    props.login({
+                                        email: email,
+                                        password: password,
+                                    });
                                 }}
                             >
                                 Sign In
                             </Button>
                             <Grid container alignItems="center">
                                 <Grid item xs={12} sm container justify="center">
-                                    <Link href="/register" variant="body2" color="textPrimary">
-                                        Don't have an account? Register
+                                    <Link href="/register" variant="body2" color="textSecondary">
+                                        Don't have an account?{' '}
+                                        <span className={classes.signRegisterColor}>Sign Up</span>
                                     </Link>
                                 </Grid>
-                                {/* <Grid item xs={12} sm container justify="center">
-                                    <FormControlLabel
-                                        control={<Checkbox value="remember" color="secondary" />}
-                                        label="Remember me"
-                                    />
-                                </Grid> */}
                             </Grid>
                         </form>
                     </div>
                 </Container>
             </MuiThemeProvider>
-        </React.Fragment >
+        </React.Fragment>
     );
 }
 

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Typography, Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actionTypes from '../shared/auth/actions/actions';
 import { AuthState } from '../shared/auth/types';
@@ -9,12 +10,18 @@ import { useRouteMatch, Switch, Route, Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     container: {
-        backgroundColor: "#010000",
+        backgroundColor: 'var(--page-bg-color)',
         width: '100%',
         minHeight: '100vh',
         display: 'grid',
         margin: 0,
         placeItems: 'center center',
+    },
+    headContent: {
+        marginLeft: '20px',
+        marginTop: '25px',
+        color: 'var(--main-bg-color)',
+        position: 'fixed',
     },
 }));
 
@@ -22,15 +29,18 @@ type LandingProps = {
     name: string;
     isLoggedIn: boolean;
     login: typeof actionTypes.fetchLoginAsync.request;
-}
+};
 
 const Landing = (props: LandingProps) => {
     const { isLoggedIn } = props;
     const match = useRouteMatch();
     const classes = useStyles();
 
-    return (!isLoggedIn) ? (
+    return !isLoggedIn ? (
         <div className={classes.container}>
+            <Typography variant="h5" align="left" className={classes.headContent}>
+                ViewVision
+            </Typography>
             <CssBaseline />
             <Switch>
                 <Redirect exact from="/" to="login" />
