@@ -17,13 +17,14 @@ import {
 import { DynamicModuleLoader } from 'redux-dynamic-modules';
 import { connect } from 'react-redux';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { fetchRegisterAsync } from '../../../shared/auth/actions/actions';
+import { fetchRegisterAsync, fetchBusinessRegisterAsync } from '../../../shared/auth/actions/actions';
 import { AuthModule } from '../../../shared/auth/module/module';
 import { useStyles } from '../../../shared/auth/styles/auth';
 import { authTheme } from '../../../shared/auth/styles/authTheme';
 
 interface RegisterProps {
     register: typeof fetchRegisterAsync.request;
+    businessRegister: typeof fetchBusinessRegisterAsync.request;
 }
 
 function Register(props: RegisterProps) {
@@ -188,6 +189,7 @@ function Register(props: RegisterProps) {
                                         label={phone ? '' : 'Phone'}
                                         name="phone"
                                         value={phone}
+                                        // type="number"
                                         autoComplete="off"
                                         autoFocus
                                         onChange={onChangePhone}
@@ -267,12 +269,24 @@ function Register(props: RegisterProps) {
                                     className={classes.submit}
                                     disableElevation={true}
                                     onClick={() => {
-                                        props.register({
-                                            firstname: firstname,
-                                            lastname: lastname,
-                                            email: email,
-                                            password: password,
-                                        });
+                                        if (value == 0) {
+                                            props.register({
+                                                firstname: firstname,
+                                                lastname: lastname,
+                                                email: email,
+                                                password: password,
+                                            });
+                                        } else {
+                                            props.businessRegister({
+                                                firstname: firstname,
+                                                lastname: lastname,
+                                                email: email,
+                                                password: password,
+                                                business_name: businessName,
+                                                phone: phone,
+                                                street_address: streetAddress,
+                                            });
+                                        }
                                     }}
                                 >
                                     Register
@@ -296,6 +310,7 @@ function Register(props: RegisterProps) {
 
 const dispatchToProps = {
     register: fetchRegisterAsync.request,
+    businessRegister: fetchBusinessRegisterAsync.request,
 };
 
 const ConnectedRegister = connect(undefined, dispatchToProps)(Register);

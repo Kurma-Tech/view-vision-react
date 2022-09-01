@@ -19,6 +19,13 @@ export const fetchRegisterAsync = createAsyncAction(
     '@AUTH/REGISTER_CANCEL',
 )<dataTypes.RegisterDetails, UserAuthInfo, Error, string>();
 
+export const fetchBusinessRegisterAsync = createAsyncAction(
+    '@AUTH/BUSINESS_REGISTER_REQUEST',
+    '@AUTH/BUSINESS_REGISTER_SUCCESS',
+    '@AUTH/BUSINESS_REGISTER_FAILURE',
+    '@AUTH/BUSINESS_REGISTER_CANCEL',
+)<dataTypes.RegisterDetails, UserAuthInfo, Error, string>();
+
 export const fetchAuthAsync = createAsyncAction(
     '@AUTH/AUTH_REQUEST',
     '@AUTH/AUTH_SUCCESS',
@@ -33,4 +40,6 @@ export const fetchLogoutAsync = createAsyncAction(
     '@AUTH/LOGOUT_CANCEL',
 )<undefined, boolean, Error, string>();
 
-export type authActionTypes = ActionType<typeof fetchLoginAsync | typeof fetchRegisterAsync | typeof fetchAuthAsync | typeof fetchLogoutAsync>;
+export type authActionTypes = ActionType<
+    typeof fetchLoginAsync | typeof fetchRegisterAsync | typeof fetchAuthAsync | typeof fetchLogoutAsync
+>;
