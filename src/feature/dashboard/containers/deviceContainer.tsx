@@ -45,7 +45,7 @@ export const DeviceContainer = (device: DeviceInfo) => {
             var response3 = null;
             var response4 = null;
             try {
-                response1 = await axios.post('http://139.162.230.224/test', {
+                response1 = await axios.post('http://212.71.235.213/test', {
                     address: device.address.toString(),
                     port: device.port.toString(),
                     username: device.userName.toString(),
@@ -61,7 +61,7 @@ export const DeviceContainer = (device: DeviceInfo) => {
                 console.log(error);
             }
             try {
-                response2 = await axios.post('http://139.162.230.224/test', {
+                response2 = await axios.post('http://212.71.235.213/test', {
                     address: device.address.toString(),
                     port: device.port.toString(),
                     username: device.userName.toString(),
@@ -77,7 +77,7 @@ export const DeviceContainer = (device: DeviceInfo) => {
                 console.log(error);
             }
             try {
-                response3 = await axios.post('http://139.162.230.224/test', {
+                response3 = await axios.post('http://212.71.235.213/test', {
                     address: device.address.toString(),
                     port: device.port.toString(),
                     username: device.userName.toString(),
@@ -93,7 +93,7 @@ export const DeviceContainer = (device: DeviceInfo) => {
                 console.log(error);
             }
             try {
-                response4 = await axios.post('http://139.162.230.224/test', {
+                response4 = await axios.post('http://212.71.235.213/test', {
                     address: device.address.toString(),
                     port: device.port.toString(),
                     username: device.userName.toString(),
