@@ -3,7 +3,7 @@ import { DeviceInfo } from '../types';
 
 
 export function getMyDevices(access_token: string) {
-    return axios.get('http://212.71.254.160/device/', {
+    return axios.get('http://178.79.174.245/device/', {
         headers: {
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*",
@@ -13,7 +13,7 @@ export function getMyDevices(access_token: string) {
 }
 
 export function addDevices(deviceInfo: DeviceInfo, access_token: string) {
-    return axios.post('http://212.71.254.160/device/', {
+    return axios.post('http://178.79.174.245/device/', {
         ...deviceInfo,
         username: deviceInfo.userName,
         deviceType_id: 1
