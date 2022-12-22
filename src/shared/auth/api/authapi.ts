@@ -19,7 +19,7 @@ import * as dataTypes from '../types';
 // userdetail: dataTypes.LoginDetails
 export function login(userdetail: dataTypes.LoginDetails) {
     console.log(userdetail.email)
-    return axios.post('http://212.71.254.160/auth/login/',
+    return axios.post('http://178.79.174.245/auth/login/',
         {
             email: userdetail.email,
             password: userdetail.password,
@@ -33,7 +33,7 @@ export function login(userdetail: dataTypes.LoginDetails) {
 
 export function register(userdetail: dataTypes.RegisterDetails) {
     console.log(userdetail.email)
-    return axios.post('http://212.71.254.160/auth/register/',
+    return axios.post('http://178.79.174.245/auth/register/',
         {
             first_name: userdetail.firstname,
             last_name: userdetail.lastname,
